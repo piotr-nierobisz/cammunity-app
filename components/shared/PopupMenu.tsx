@@ -26,10 +26,11 @@ interface MenuOption {
 	onPress: () => void;
 }
 
+const { SIGN_IN, CONTACT, ABOUT_US } = Globals.SCREENS.LOGGED_OUT;
+
 export const PopupMenu = () => {
 	const navigation = useNavigation() as any;
 
-	const { SIGN_IN } = Globals.SCREENS.LOGGED_OUT;
 	const [visible, setVisible] = useState(false);
 	const scale = useRef(new Animated.Value(0)).current;
 
@@ -71,9 +72,32 @@ export const PopupMenu = () => {
 		},
 	];
 
-	function handleOnPress(link: string) {
+	const routes: MenuOption[] = [
+		{
+			title: "Help / Contact",
+			onPress: () => handleOnPress(CONTACT),
+		},
+		{
+			title: "About Us",
+			onPress: () => handleOnPress(ABOUT_US),
+		},
+		{
+			title: "Log Out",
+			onPress: () => handleLogout(),
+		},
+	];
+
+	const handleOnPress = (link: string) => {
 		navigation.navigate(link);
-	}
+	};
+
+	const handleLogout = () => {};
+
+	const handleClose = () => {
+		setTimeout(() => {
+			setVisible(false);
+		}, 200);
+	};
 
 	React.useEffect(() => {
 		if (visible) {
@@ -116,7 +140,7 @@ export const PopupMenu = () => {
 			>
 				<SafeAreaView
 					style={[styles.bg]}
-					onTouchStart={() => setVisible(false)}
+					onTouchStart={handleClose}
 				>
 					<Animated.View
 						style={[
@@ -140,27 +164,25 @@ export const PopupMenu = () => {
 						<Spacer />
 						<FancyBorder />
 						<Spacer size={40} />
-						<View style={{ alignItems: "center", flex: 1 }}>
-							<Pressable>
-								<AppText>Help/Contact</AppText>
-							</Pressable>
-							<Spacer />
-							<Pressable>
-								<AppText>About us</AppText>
-							</Pressable>
-							<Spacer />
-							<Pressable>
-								<AppText>Log Out</AppText>
-							</Pressable>
+						<View style={{ alignItems: "center", flex: 1, width: "100%" }}>
+							{routes.map((i, index) => (
+								<Pressable
+									onPress={i.onPress}
+									key={index}
+									style={{ marginBottom: 4, padding: 10 }}
+								>
+									<AppText>{i.title}</AppText>
+								</Pressable>
+							))}
 						</View>
 
 						<Spacer size={50} />
 						<View style={{ alignItems: "center", paddingHorizontal: 15 }}>
 							<AppText style={{ fontSize: 12, marginBottom: 8 }}>Follow us</AppText>
-							<View style={{ alignItems: "center", flexDirection: "row", justifyContent: 'center', width: '100%', }}>
+							<View style={{ alignItems: "center", flexDirection: "row", justifyContent: "center", width: "100%" }}>
 								{socials.map((i, index) => (
 									<FontAwesome5
-									style={{ padding: 10, }}
+										style={{ padding: 10 }}
 										key={index}
 										name={i.icon}
 										size={26}
