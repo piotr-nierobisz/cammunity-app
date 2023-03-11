@@ -1,27 +1,16 @@
 import React from "react";
-import { Text } from "react-native";
-import { Globals, ScreenProps } from "@app/constants";
+import { ScreenProps } from "@app/constants";
 import { AppLayout } from "@app/components/layouts";
-import { Button } from "react-native-paper";
+import { Category, SearchSection, Showcase } from "./sub-components";
 
 interface LocalProps extends ScreenProps {}
 
-export const HomeScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element => {
-	const { SIGN_IN } = Globals.SCREENS.LOGGED_OUT;
-
-	// React.useEffect(() => {
-	// 	console.log("Link:");
-	// }, []);
-
+export const HomeScreen: React.FC<LocalProps> = (): JSX.Element => {
 	return (
 		<AppLayout>
-			{/* <Button
-				mode='contained'
-				onPress={() => navigation.navigate(SIGN_IN)}
-			>
-				<Text> GO TO SOMEWHARE </Text>
-			</Button> */}
-			<Text>HomeScreen</Text>
+			<Showcase />
+			<SearchSection />
+			<Category />
 		</AppLayout>
 	);
 };

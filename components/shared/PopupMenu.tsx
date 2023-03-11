@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Modal, StyleSheet, TouchableOpacity, SafeAreaView, Animated, Easing, View, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Modal, StyleSheet, TouchableOpacity, SafeAreaView, Animated, Easing, View, Pressable } from "react-native";;
 import { Feather, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { List } from "react-native-paper";
 import * as Linking from "expo-linking";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { Colours, Globals } from "@app/constants";
 import { FancyBorder } from "./FancyBorder";
@@ -29,7 +30,7 @@ interface MenuOption {
 const { SIGN_IN, CONTACT, ABOUT_US } = Globals.SCREENS.LOGGED_OUT;
 
 export const PopupMenu = () => {
-	const navigation = useNavigation() as any;
+	const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
 	const [visible, setVisible] = useState(false);
 	const scale = useRef(new Animated.Value(0)).current;
@@ -119,7 +120,7 @@ export const PopupMenu = () => {
 
 	return (
 		<>
-			<TouchableOpacity onPress={() => setVisible(true)}>
+			<TouchableOpacity style={{ width: 50, height: 50, alignItems: 'center', justifyContent:  'center' }} onPress={() => setVisible(true)}>
 				{visible ? (
 					<AntDesign
 						name='close'

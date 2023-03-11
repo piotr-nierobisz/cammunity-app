@@ -1,25 +1,21 @@
-import React, {  useState } from "react";
-import { Image,  StyleSheet,  View } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet, View } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 import { Colours } from "@app/constants";
 import { FancyBorder } from "./FancyBorder";
 import { PopupMenu } from "./PopupMenu";
 
-const logo = require("../../assets/logo.png");
-const { WHITE, } = Colours.APP;
+const logo = require("@assets/logo.png");
+const { WHITE, LIGHT_GRAY_1 } = Colours.APP;
 
-// https://www.youtube.com/watch?v=P2hFcomkqXY&t=33s
-// https://www.youtube.com/watch?v=cplb3QjoZVg
-
-export const Header: React.FC<any> = ({ showBorder = true }) => {
-	const [openMenu, setOpenMenu] = useState(false);
+export const Header: React.FC<any> = () => {
 	return (
 		<>
 			<StatusBar
 				translucent={false}
 				style='dark'
-				backgroundColor={WHITE}
+				backgroundColor={LIGHT_GRAY_1}
 			/>
 			<View style={styles.root}>
 				<Image

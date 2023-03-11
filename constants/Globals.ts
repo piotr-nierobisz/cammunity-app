@@ -1,3 +1,4 @@
+import { Dimensions, Platform } from "react-native";
 import { DefaultTheme } from "react-native-paper";
 import { Colours } from "./Colours";
 
@@ -35,5 +36,11 @@ export const Globals = Object.freeze({
 				primary: Colours.APP.PRIMARY,
 			},
 		},
+	},
+	SIZES: {
+		FULL_WIDTH: Dimensions.get("window").width,
+		FULL_HEIGHT: Dimensions.get("window").height,
+		IS_IOS: Platform.OS === "ios",
+		IS_ANDROID: Platform.OS === "android",
 	},
 });

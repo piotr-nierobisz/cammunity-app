@@ -8,6 +8,8 @@ export const Colours = {
     BLACK: '#000000', 
     FACEBOOK: '#1877f2',
     LINKEDIN: '#0966c2',
-    YOUTUBE: '#ff0302'
+    YOUTUBE: '#ff0302',
+    LIGHT_GRAY_1: '#eee',
+    BLACK_LIGHT: 'rgba(0,0,0,0.6)'
   },
 };
