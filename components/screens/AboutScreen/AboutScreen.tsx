@@ -8,10 +8,5 @@ import { ScreenProps } from "@app/constants";
 interface LocalProps extends ScreenProps {}
 
 export const AboutScreen: React.FC<LocalProps> = (): JSX.Element => {
-	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<Header />
-			<Text>AboutScreen</Text>
-		</SafeAreaView>
-	);
+	return <Text>AboutScreen</Text>;
 };

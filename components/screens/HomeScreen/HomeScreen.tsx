@@ -1,17 +1,27 @@
 import React from "react";
 import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-import { Header } from "@app/components/shared";
-import { ScreenProps } from "@app/constants";
+import { Globals, ScreenProps } from "@app/constants";
+import { AppLayout } from "@app/components/layouts";
+import { Button } from "react-native-paper";
 
 interface LocalProps extends ScreenProps {}
 
-export const HomeScreen: React.FC<LocalProps> = (): JSX.Element => {
+export const HomeScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element => {
+	const { SIGN_IN } = Globals.SCREENS.LOGGED_OUT;
+
+	// React.useEffect(() => {
+	// 	console.log("Link:");
+	// }, []);
+
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<Header />
+		<AppLayout>
+			{/* <Button
+				mode='contained'
+				onPress={() => navigation.navigate(SIGN_IN)}
+			>
+				<Text> GO TO SOMEWHARE </Text>
+			</Button> */}
 			<Text>HomeScreen</Text>
-		</SafeAreaView>
+		</AppLayout>
 	);
 };

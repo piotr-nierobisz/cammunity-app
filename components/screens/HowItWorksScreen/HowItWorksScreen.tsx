@@ -9,9 +9,8 @@ interface LocalProps extends ScreenProps {}
 
 export const HowItWorksScreen: React.FC<LocalProps> = (): JSX.Element => {
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<Header />
+
 			<Text>HowItWorksScreen</Text>
-		</SafeAreaView>
+		
 	);
 };

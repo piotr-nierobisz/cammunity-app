@@ -1,3 +1,6 @@
+import { DefaultTheme } from "react-native-paper";
+import { Colours } from "./Colours";
+
 export const Globals = Object.freeze({
 	SCREENS: {
 		LOGGED_OUT: {
@@ -20,6 +23,17 @@ export const Globals = Object.freeze({
 			PROFILE: "Profile",
 			MESSAGES: "messages",
 			BOOKINGS: "Bookings",
+		},
+	},
+
+	THEME: {
+		PAPER: {
+			...DefaultTheme,
+			roundness: 2,
+			colors: {
+				...DefaultTheme.colors,
+				primary: Colours.APP.PRIMARY,
+			},
 		},
 	},
 });

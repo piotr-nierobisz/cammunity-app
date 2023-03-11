@@ -15,6 +15,7 @@ import {
 	TermsOfServiceScreen,
 	SignUpScreen,
 	SignInScreen,
+	CsrScreen
 } from "@app/components/screens";
 
 const Stack = createNativeStackNavigator();
@@ -112,6 +113,14 @@ const MainStackNavigator = () => {
 		{
 			name: TERMS_OF_SERVICE,
 			component: TermsOfServiceScreen,
+			options: {
+				headerShown: false,
+				title: "",
+			},
+		},
+		{
+			name: CSR,
+			component: CsrScreen,
 			options: {
 				headerShown: false,
 				title: "",
