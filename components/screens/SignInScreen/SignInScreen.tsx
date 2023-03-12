@@ -1,17 +1,15 @@
 import React from "react";
 import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Header } from "@app/components/shared";
 import { ScreenProps } from "@app/constants";
+import { AppLayout } from "@app/components/layouts";
 
 interface LocalProps extends ScreenProps {}
 
 export const SignInScreen: React.FC<LocalProps> = (): JSX.Element => {
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<Header />
+		<AppLayout>
 			<Text>SignInScreen</Text>
-		</SafeAreaView>
+		</AppLayout>
 	);
 };

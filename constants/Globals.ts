@@ -1,3 +1,7 @@
+import { Dimensions, Platform } from "react-native";
+import { DefaultTheme } from "react-native-paper";
+import { Colours } from "./Colours";
+
 export const Globals = Object.freeze({
 	SCREENS: {
 		LOGGED_OUT: {
@@ -21,5 +25,22 @@ export const Globals = Object.freeze({
 			MESSAGES: "messages",
 			BOOKINGS: "Bookings",
 		},
+	},
+
+	THEME: {
+		PAPER: {
+			...DefaultTheme,
+			roundness: 2,
+			colors: {
+				...DefaultTheme.colors,
+				primary: Colours.APP.PRIMARY,
+			},
+		},
+	},
+	SIZES: {
+		FULL_WIDTH: Dimensions.get("window").width,
+		FULL_HEIGHT: Dimensions.get("window").height,
+		IS_IOS: Platform.OS === "ios",
+		IS_ANDROID: Platform.OS === "android",
 	},
 });
