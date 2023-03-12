@@ -2,40 +2,42 @@ import { StyleSheet, Text, TextProps } from "react-native";
 import React from "react";
 
 interface LocalProps extends TextProps {
-	children: string;
+	children: string | any;
+	fontSize?: number
 }
-export const AppText = ({ style, ...props }: LocalProps) => {
+
+export const AppText = ({ style, fontSize, ...props }: LocalProps) => {
 	return (
 		<Text
 			{...props}
-			style={[styles.text, style]}
+			style={[styles.text, {fontSize: fontSize ? fontSize : styles.text.fontSize}, style]}
 		/>
 	);
 };
 
-AppText.Title = ({ style, ...props }: LocalProps) => {
+AppText.Title = ({ style, fontSize, ...props }: LocalProps) => {
 	return (
 		<AppText
 			{...props}
-			style={[styles.title, style]}
+			style={[styles.title, {fontSize: fontSize ? fontSize : styles.title.fontSize}, style]}
 		/>
 	);
 };
 
-AppText.SubTitle = ({ style, ...props }: LocalProps) => {
+AppText.SubTitle = ({ style, fontSize, ...props }: LocalProps) => {
 	return (
 		<AppText
 			{...props}
-			style={[styles.subTitle, style]}
+			style={[styles.subTitle,  {fontSize: fontSize ? fontSize : styles.subTitle.fontSize},  style]}
 		/>
 	);
 };
 
-AppText.Body = ({ style, ...props }: LocalProps) => {
+AppText.Body = ({ style, fontSize, ...props }: LocalProps) => {
 	return (
 		<AppText
 			{...props}
-			style={[styles.body, style]}
+			style={[styles.body,  {fontSize: fontSize ? fontSize : styles.body.fontSize},  style]}
 		/>
 	);
 };
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
 	},
 	body: {
 		fontWeight: "400",
+		// lineHeight: 16.42,
 		fontSize: 14,
 	},
 });

@@ -1,11 +1,11 @@
 import { NativeStackNavigationOptions, NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export interface UserType {
-  verificationToken: string;
-  username: string;
-  firstName: string;
-  secondName: string;
-  email: string;
+	verificationToken: string;
+	username: string;
+	firstName: string;
+	secondName: string;
+	email: string;
 }
 
 // Navigation
@@ -17,4 +17,10 @@ export interface Screen {
 
 export interface ScreenProps {
 	navigation: NativeStackNavigationProp<any>;
+}
+
+export interface Camera {
+	id: string;
+	image: any;
+	title: string;
 }

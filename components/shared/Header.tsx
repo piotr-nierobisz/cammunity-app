@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React from "react";
+import { Image, Pressable, StyleSheet, View } from "react-native";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { StatusBar } from "expo-status-bar";
-import { Colours } from "@app/constants";
+import { Colours, Globals } from "@app/constants";
 import { FancyBorder } from "./FancyBorder";
 import { PopupMenu } from "./PopupMenu";
 
 const logo = require("@assets/logo.png");
+
+
 const { WHITE, LIGHT_GRAY_1 } = Colours.APP;
+const { HOME  } = Globals.SCREENS.LOGGED_OUT;
 
 export const Header: React.FC<any> = () => {
+	const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
 	return (
 		<>
 			<StatusBar
@@ -17,14 +24,14 @@ export const Header: React.FC<any> = () => {
 				style='dark'
 				backgroundColor={LIGHT_GRAY_1}
 			/>
-			<View style={styles.root}>
+			<Pressable onPress={() => navigation.navigate(HOME)} style={styles.root}>
 				<Image
 					source={logo}
 					style={styles.logo}
 					resizeMode='contain'
 				/>
 				<PopupMenu />
-			</View>
+			</Pressable>
 			<FancyBorder />
 		</>
 	);
@@ -42,25 +49,5 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		width: 109.72,
-	},
-	popup: {
-		flex: 1,
-		zIndex: 200,
-		position: "relative",
-	},
-	menuCon: {
-		backgroundColor: "#fff",
-		width: 256,
-		height: 520,
-		position: "absolute",
-		right: 0,
-		borderRadius: 10,
-		padding: 20,
-
-		shadowOffset: { width: -2, height: 4 },
-		shadowColor: "#171717",
-		shadowOpacity: 0.2,
-		shadowRadius: 3,
-		elevation: 5,
 	},
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
+
 import { ScreenProps } from "@app/constants";
 import { AppLayout } from "@app/components/layouts";
 

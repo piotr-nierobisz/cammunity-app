@@ -1,40 +1,24 @@
 import { StyleSheet, Text, View, Image, FlatList, Dimensions, Pressable } from "react-native";
 import React, { FC } from "react";
-import { IconButton } from "./AppButton";
-import { AppText } from "@app/components/shared";
-import { Colours } from "@app/constants";
+import { Feather } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
-const { width } = Dimensions.get("window");
-const { PRIMARY, BLACK_LIGHT, WHITE } = Colours.APP;
+const avatar = require("@assets/avatar.png");
 
-interface Camera {
-	id: string;
-	image: any;
-	title: string;
+import { AppText, IconButton, Spacer } from "@app/components/shared";
+import { Camera, Colours, Globals } from "@app/constants";
+
+const { PRIMARY, BLACK_LIGHT, WHITE, LIGHT_GRAY } = Colours.APP;
+const {
+	SIZES: { FULL_WIDTH },
+} = Globals;
+
+interface LocalProps {
+	withRating?: boolean;
+	items: Camera[];
+	sectionTitle: string;
+	sectionSubTitle: string;
 }
-
-const cameraList: Camera[] = [
-	{
-		id: "1",
-		image: require("@assets/cam-6.png"),
-		title: "Hybrid Cameras",
-	},
-	{
-		id: "2",
-		image: require("@assets/cam-3.png"),
-		title: "Cinema Lenses",
-	},
-	{
-		id: "3",
-		image: require("@assets/cam-2.png"),
-		title: "Lights",
-	},
-	{
-		id: "4",
-		image: require("@assets/cam-5.png"),
-		title: "Microphones",
-	},
-];
 
 const Slide: FC<{ item: Camera }> = ({ item }) => {
 	return (
@@ -42,19 +26,72 @@ const Slide: FC<{ item: Camera }> = ({ item }) => {
 			<View style={styles.slideImgCon}>
 				<Image
 					source={item?.image}
-					style={styles.bg}
+					style={styles.image}
 					resizeMode='contain'
 				/>
 			</View>
 			<Pressable style={styles.itemBtn}>
 				<Text style={styles.slideTitle}>{item.title}</Text>
-				<Text style={styles.slideBtnIcon}>{">"}</Text>
+				<Feather
+					style={styles.slideBtnIcon}
+					name='chevron-right'
+					size={24}
+					color={PRIMARY}
+				/>
 			</Pressable>
 		</View>
 	);
 };
 
-export const Category = () => {
+const SlideWithRating: FC<{ item: Camera }> = ({ item }) => {
+	return (
+		<View style={styles.slide2}>
+			<View style={styles.slideImgCon2}>
+				<Image
+					source={item?.image}
+					style={styles.image2}
+					resizeMode='contain'
+				/>
+			</View>
+			<Spacer size={5} />
+			<AppText.SubTitle style={{ fontSize: 12 }}>Canon R6</AppText.SubTitle>
+			<Spacer />
+			<View style={{ flexDirection: "row", alignItems: "center", width: FULL_WIDTH / 1.7 }}>
+				<View style={{ flexDirection: "row", alignItems: "center", width: "50%" }}>
+					<Image
+						source={avatar}
+						style={styles.userIcon}
+						resizeMode='contain'
+					/>
+					<AppText fontSize={11}>Name of pers...</AppText>
+				</View>
+
+				<View style={{ flexDirection: "row", alignItems: "center", marginLeft: 5 }}>
+					<Entypo
+						name='star'
+						size={14}
+						color={PRIMARY}
+					/>
+					<AppText
+						fontSize={11}
+						style={{ marginLeft: 4 }}
+					>
+						5
+					</AppText>
+					<AppText
+						fontSize={11}
+						style={{ marginLeft: 4, color: LIGHT_GRAY }}
+					>
+						{"(13)"}
+					</AppText>
+				</View>
+			</View>
+		</View>
+	);
+};
+
+export const Category: FC<LocalProps> = (props) => {
+	const { withRating = false, items, sectionSubTitle, sectionTitle } = props;
 	const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 	const ref = React.useRef() as any;
 
@@ -65,7 +102,7 @@ export const Category = () => {
 	const viewConfig = React.useRef({ viewAreaCoveragePercentThreshold: 100 }).current;
 
 	const next = () => {
-		if (currentSlideIndex < cameraList.length - 1) {
+		if (currentSlideIndex < items.length - 1) {
 			ref?.current.scrollToIndex({ index: currentSlideIndex + 1 });
 		}
 	};
@@ -80,8 +117,8 @@ export const Category = () => {
 
 	return (
 		<View style={styles.con}>
-			<AppText.Title style={styles.title}>Browse by category</AppText.Title>
-			<AppText style={styles.subtitle}>Find equipment locally and affordably</AppText>
+			<AppText.Title style={styles.title}>{sectionTitle}</AppText.Title>
+			<AppText style={styles.subtitle}>{sectionSubTitle}</AppText>
 
 			<View style={styles.flatListCon}>
 				<FlatList
@@ -89,24 +126,40 @@ export const Category = () => {
 					bounces={false}
 					showsHorizontalScrollIndicator={false}
 					horizontal
-					data={cameraList}
+					data={items}
 					keyExtractor={(item) => `${item.id}`}
-					renderItem={({ item }) => <Slide item={item} />}
+					renderItem={({ item }) => (withRating ? <SlideWithRating item={item} /> : <Slide item={item} />)}
 					onViewableItemsChanged={itemChanged}
 					viewabilityConfig={viewConfig}
 				/>
-				<View style={styles.action1}>
-					<IconButton
-						onPress={prev}
-						title='<'
-					/>
-				</View>
-				<View style={styles.action2}>
-					<IconButton
-						onPress={next}
-						title='>'
-					/>
-				</View>
+				{!withRating && (
+					<>
+						<View style={styles.action1}>
+							<IconButton
+								onPress={prev}
+								style={{ backgroundColor: "transparent" }}
+							>
+								<Feather
+									name='chevron-left'
+									size={24}
+									color='black'
+								/>
+							</IconButton>
+						</View>
+						<View style={styles.action2}>
+							<IconButton
+								onPress={next}
+								style={{ backgroundColor: "transparent" }}
+							>
+								<Feather
+									name='chevron-right'
+									size={24}
+									color='black'
+								/>
+							</IconButton>
+						</View>
+					</>
+				)}
 			</View>
 		</View>
 	);
@@ -134,14 +187,18 @@ const styles = StyleSheet.create({
 	imgCon: {
 		height: 150,
 		width: "100%",
-		backgroundColor: "yellow",
 		overflow: "hidden",
 		position: "relative",
 	},
-	bg: {
+	image: {
 		height: "100%",
 		resizeMode: "cover",
 		width: "100%",
+	},
+	image2: {
+		height: 120,
+		resizeMode: "cover",
+		width: 120,
 	},
 	overlay: {
 		...StyleSheet.absoluteFillObject,
@@ -158,17 +215,30 @@ const styles = StyleSheet.create({
 		right: -5,
 	},
 	slide: {
-		width: width / 2.3,
+		width: FULL_WIDTH / 2.3,
 		borderRadius: 10,
 		marginRight: 10,
 		marginLeft: 15,
 		padding: 10,
+	},
+	slide2: {
+		width: FULL_WIDTH / 2,
+		borderRadius: 10,
+		paddingHorizontal: 15,
+		paddingVertical: 10,
 	},
 	slideImgCon: {
 		width: "100%",
 		height: 135,
 		marginBottom: 5,
 		padding: 5,
+		alignItems: "center",
+	},
+	slideImgCon2: {
+		width: "100%",
+		height: 100,
+		marginBottom: 5,
+		padding: 1,
 	},
 	slideTitle: {
 		fontWeight: "600",
@@ -184,5 +254,13 @@ const styles = StyleSheet.create({
 	itemBtn: {
 		flexDirection: "row",
 		alignItems: "center",
+	},
+
+	// user
+	userIcon: {
+		height: 20,
+		resizeMode: "cover",
+		width: 20,
+		marginRight: 5,
 	},
 });

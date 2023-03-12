@@ -10,6 +10,7 @@ export const Colours = {
     LINKEDIN: '#0966c2',
     YOUTUBE: '#ff0302',
     LIGHT_GRAY_1: '#eee',
-    BLACK_LIGHT: 'rgba(0,0,0,0.6)'
+    BLACK_LIGHT: 'rgba(0,0,0,0.6)',
+    LIGHT_GRAY: '#A8A8A8',
   },
 };

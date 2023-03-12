@@ -1,17 +1,17 @@
 ## Todo
 [ ] HomeScreen
 [ ] EquipmentsScreen
-
-HowItWorksScreen
-AboutScreen
-FaqsScreen
-ContactScreen
-PrivacyPolicyScreen
+[ ] AboutScreen
+[ ] HowItWorksScreen
+[ ] FaqsScreen
+[ ] ContactScreen
+[ ] PrivacyPolicyScreen
 TermsOfServiceScreen
 SignUpScreen
 SignInScreen
 SingleEquipmentScreen
 EquipmentBookingScreen
+[ ] Icons
 
 [ ] Header and menu drawer
 

@@ -11,8 +11,6 @@ import { FancyBorder } from "./FancyBorder";
 import { Spacer } from "./Spacer";
 import { AppText } from "./AppText";
 
-const { WHITE, PRIMARY, BLACK, FACEBOOK, LINKEDIN, YOUTUBE } = Colours.APP;
-
 interface ItemSectionProps {
 	title: string;
 	description?: string;
@@ -28,6 +26,7 @@ interface MenuOption {
 }
 
 const { SIGN_IN, CONTACT, ABOUT_US } = Globals.SCREENS.LOGGED_OUT;
+const { WHITE, PRIMARY, BLACK, FACEBOOK, LINKEDIN, YOUTUBE } = Colours.APP;
 
 export const PopupMenu = () => {
 	const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
@@ -212,7 +211,7 @@ const styles = StyleSheet.create({
 		width: 256,
 		height: "60%",
 		marginTop: 64,
-		marginRight: 5,
+		marginRight: 2,
 		borderRadius: 10,
 		paddingTop: 15,
 		paddingBottom: 20,

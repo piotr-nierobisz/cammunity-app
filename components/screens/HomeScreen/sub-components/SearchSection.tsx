@@ -3,7 +3,7 @@ import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StyleSheet, TextInput, View } from "react-native";
 // import { routes } from "@src/screens/routes";
-import { AppButton } from "./AppButton";
+import { AppButton } from "../../../shared/AppButton";
 import { Globals } from "@app/constants";
 
 const { EQUIPMENTS } = Globals.SCREENS.LOGGED_OUT;
@@ -29,7 +29,7 @@ export const SearchSection = () => {
 			/>
 
 			<AppButton
-				title='Search ->'
+				title='Search'
 				onPress={() => navigation.navigate(EQUIPMENTS)}
 			/>
 		</View>
