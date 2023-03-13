@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { Colours } from "@app/constants";
@@ -20,19 +20,21 @@ const { WHITE, BUTTON_BG } = Colours.APP;
 
 export const AppButton: FC<AppButtonType> = ({ onPress, title = "Save", style, ...props }) => {
 	return (
-		<Pressable
-			{...props}
-			style={[styles.button, style]}
-			onPress={onPress}
-		>
-			<Text style={styles.text}>{title}</Text>
-			<Feather
-				name='arrow-right'
-				size={20}
-				color={WHITE}
-				style={{ marginLeft: 10 }}
-			/>
-		</Pressable>
+		<View style={{ alignItems: "center" }}>
+			<Pressable
+				{...props}
+				style={[styles.button, style]}
+				onPress={onPress}
+			>
+				<Text style={styles.text}>{title}</Text>
+				<Feather
+					name='arrow-right'
+					size={20}
+					color={WHITE}
+					style={{ marginLeft: 10 }}
+				/>
+			</Pressable>
+		</View>
 	);
 };
 
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		paddingVertical: 8,
 		height: 40,
-		paddingHorizontal: 20,
+		paddingHorizontal: 30,
 		borderRadius: 4,
 		elevation: 3,
 		backgroundColor: BUTTON_BG,

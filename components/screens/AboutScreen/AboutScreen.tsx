@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import { AppText, Spacer, AppButton } from "@app/components/shared";
 import { Globals, ScreenProps } from "@app/constants";
-import { AppLayout } from "@app/components/layouts";;
+import { AppLayout } from "@app/components/layouts";
 
 interface LocalProps extends ScreenProps {}
 

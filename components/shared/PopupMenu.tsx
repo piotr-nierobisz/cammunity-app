@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Modal, StyleSheet, TouchableOpacity, SafeAreaView, Animated, Easing, View, Pressable } from "react-native";;
+import { Modal, StyleSheet, TouchableOpacity, SafeAreaView, Animated, Easing, View, Pressable, Image } from "react-native";
 import { Feather, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { List } from "react-native-paper";
 import * as Linking from "expo-linking";
@@ -11,22 +11,29 @@ import { FancyBorder } from "./FancyBorder";
 import { Spacer } from "./Spacer";
 import { AppText } from "./AppText";
 
-interface ItemSectionProps {
-	title: string;
-	description?: string;
-	onPress?: () => void;
-	arrowRight?: boolean;
-	iconLeft?: string;
-	bg?: string;
-}
+const icon2 = require("@assets/icon-avatar-2.png");
 
 interface MenuOption {
 	title: string;
 	onPress: () => void;
+	icon?: any;
 }
 
 const { SIGN_IN, CONTACT, ABOUT_US } = Globals.SCREENS.LOGGED_OUT;
 const { WHITE, PRIMARY, BLACK, FACEBOOK, LINKEDIN, YOUTUBE } = Colours.APP;
+
+const ItemSection: React.FC<MenuOption> = ({ title, onPress, icon }) => {
+	return (
+		<View style={[{ paddingVertical: 4, paddingHorizontal: 15, marginBottom: 5, flexDirection: "row", alignItems: "center" }]}>
+			<Image
+				source={icon}
+				style={styles.icon}
+				resizeMode='contain'
+			/>
+			<AppText style={{ marginLeft: 10, width: "80%" }}>{title}</AppText>
+		</View>
+	);
+};
 
 export const PopupMenu = () => {
 	const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
@@ -38,14 +45,17 @@ export const PopupMenu = () => {
 		{
 			title: "Account",
 			onPress: () => handleOnPress(SIGN_IN),
+			icon: require("@assets/icon-avatar.png"),
 		},
 		{
 			title: "Messages",
 			onPress: () => handleOnPress(SIGN_IN),
+			icon: require("@assets/icon-message.png"),
 		},
 		{
 			title: "Bookings",
 			onPress: () => handleOnPress(SIGN_IN),
+			icon: require("@assets/icon-message-single.png"),
 		},
 	];
 
@@ -81,10 +91,10 @@ export const PopupMenu = () => {
 			title: "About Us",
 			onPress: () => handleOnPress(ABOUT_US),
 		},
-		{
-			title: "Log Out",
-			onPress: () => handleLogout(),
-		},
+		// {
+		// 	title: "Log Out",
+		// 	onPress: () => handleLogout(),
+		// },
 	];
 
 	const handleOnPress = (link: string) => {
@@ -119,7 +129,10 @@ export const PopupMenu = () => {
 
 	return (
 		<>
-			<TouchableOpacity style={{ width: 50, height: 50, alignItems: 'center', justifyContent:  'center' }} onPress={() => setVisible(true)}>
+			<TouchableOpacity
+				style={{ width: 50, height: 50, alignItems: "center", justifyContent: "center" }}
+				onPress={() => setVisible(true)}
+			>
 				{visible ? (
 					<AntDesign
 						name='close'
@@ -157,13 +170,12 @@ export const PopupMenu = () => {
 						{menuOptions.map((item, index) => (
 							<ItemSection
 								key={index}
-								title={item.title}
-								onPress={item.onPress}
+								{...item}
 							/>
 						))}
 						<Spacer />
 						<FancyBorder />
-						<Spacer size={40} />
+						<Spacer size={20} />
 						<View style={{ alignItems: "center", flex: 1, width: "100%" }}>
 							{routes.map((i, index) => (
 								<Pressable
@@ -174,6 +186,13 @@ export const PopupMenu = () => {
 									<AppText>{i.title}</AppText>
 								</Pressable>
 							))}
+
+							<Pressable
+								onPress={() => navigation.navigate(SIGN_IN)}
+								style={{ marginBottom: 4, padding: 10 }}
+							>
+								<AppText>Log In</AppText>
+							</Pressable>
 						</View>
 
 						<Spacer size={50} />
@@ -205,13 +224,12 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "flex-end",
 	},
-
 	menuCon: {
 		backgroundColor: WHITE,
 		width: 256,
 		height: "60%",
 		marginTop: 64,
-		marginRight: 2,
+		marginRight: 1,
 		borderRadius: 10,
 		paddingTop: 15,
 		paddingBottom: 20,
@@ -225,22 +243,8 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		lineHeight: 18,
 	},
+	icon: {
+		width: 27,
+		height: 27,
+	},
 });
-
-const ItemSection: React.FC<ItemSectionProps> = ({ title, onPress, bg = WHITE }) => {
-	return (
-		<List.Item
-			onPress={onPress}
-			title={title}
-			titleStyle={styles.itemTitle}
-			style={{ paddingVertical: 0, paddingHorizontal: 10 }}
-			left={() => (
-				<Feather
-					name='link'
-					size={24}
-					color={PRIMARY}
-				/>
-			)}
-		/>
-	);
-};

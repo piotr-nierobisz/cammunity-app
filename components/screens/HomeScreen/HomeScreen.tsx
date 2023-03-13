@@ -53,6 +53,7 @@ const cameraList2: Camera[] = [
 ];
 
 export const HomeScreen: React.FC<LocalProps> = (): JSX.Element => {
+
 	return (
 		<AppLayout>
 			<Showcase />

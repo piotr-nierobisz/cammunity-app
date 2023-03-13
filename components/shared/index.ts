@@ -5,3 +5,5 @@ export * from './AppText';
 export * from  './PopupMenu';
 export * from  './Spacer';
 export * from  './AppButton';
+export * from  './AppInput';
+export * from './AppCheckBox';
