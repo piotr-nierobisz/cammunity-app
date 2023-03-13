@@ -3,6 +3,7 @@ import React from "react";
 
 interface LocalProps extends TextProps {
 	children: string | any;
+	// children: React.ReactElement | React.ReactElement[];
 	fontSize?: number;
 	color?: string;
 }

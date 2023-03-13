@@ -1,50 +1,58 @@
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
-import { AppButton, AppText, Spacer } from "@app/components/shared";
-import { Colours, ScreenProps } from "@app/constants";
+import { AppText, Spacer } from "@app/components/shared";
+import { Colours, Globals, ScreenProps } from "@app/constants";
 import { AppLayout } from "@app/components/layouts";
 import { Account, Complete, Insurance, PersonalInfo, Verify } from "./sub-components";
 import { TouchableRipple } from "react-native-paper";
 
-const { PRIMARY, LIGHT_GRAY_1, WHITE } = Colours.APP;
 interface LocalProps extends ScreenProps {}
 
 interface Step {
 	title: string;
 	key: string;
 	component: JSX.Element;
+	valid: boolean;
 }
+
+const { PRIMARY, LIGHT_GRAY_1, WHITE, LIGHT_GRAY_2 } = Colours.APP;
+const { HOME } = Globals.SCREENS.LOGGED_OUT;
 
 export const SignUpScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element => {
 	const [currentIndex, setCurrentIndex] = React.useState(0);
 	const [currentStep, setCurrentStep] = React.useState<Step | null>(null);
 
-	const steps: Step[] = [
+	let steps: Step[] = [
 		{
 			title: "Personal Info",
 			key: "personal-info",
-			component: <PersonalInfo />,
+			component: <PersonalInfo onNext={() => handleNext()} />,
+			valid: false,
 		},
 		{
 			title: "Verify",
 			key: "verify",
-			component: <Verify />,
+			component: <Verify onNext={() => handleNext()} />,
+			valid: false,
 		},
 		{
 			title: "Account",
 			key: "account",
-			component: <Account />,
+			component: <Account onNext={() => handleNext()} />,
+			valid: false,
 		},
 		{
 			title: "Insurance",
 			key: "insurance",
-			component: <Insurance />,
+			component: <Insurance onNext={() => handleNext()} />,
+			valid: false,
 		},
 		{
 			title: "Complete",
 			key: "complete",
-			component: <Complete />,
+			component: <Complete onNext={() => handleComplete()} />,
+			valid: false,
 		},
 	];
 
@@ -59,10 +67,21 @@ export const SignUpScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element 
 			setCurrentIndex(currentIndex - 1);
 		}
 	};
-
+	const handleComplete = () => {
+		navigation.navigate(HOME);
+	};
 	React.useEffect(() => {
 		const current = steps[currentIndex];
 		setCurrentStep(current);
+
+		const newState = steps.map((obj, index) => {
+			if (index === currentIndex) {
+				return { ...obj, valid: true };
+			}
+			return obj;
+		});
+
+		steps = [...newState];
 	}, [currentIndex]);
 
 	return (
@@ -75,7 +94,14 @@ export const SignUpScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element 
 					the platform, get in touch with us below!
 				</AppText.Body>
 				<Spacer size={30} />
-				<View style={{ flexDirection: "row", marginBottom: 30, width: "100%", justifyContent: "space-between" }}>
+				<View
+					style={{
+						flexDirection: "row",
+						marginBottom: 30,
+						width: "100%",
+						justifyContent: "space-between",
+					}}
+				>
 					{steps.map((i, index) => (
 						<TouchableRipple
 							key={index}
@@ -87,8 +113,8 @@ export const SignUpScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element 
 									style={[
 										styles.indicator,
 										{
-											borderColor: currentIndex === index ? PRIMARY : LIGHT_GRAY_1,
-											backgroundColor: currentIndex === index ? WHITE : LIGHT_GRAY_1,
+											borderColor: currentIndex === index || i.valid ? PRIMARY : LIGHT_GRAY_1,
+											backgroundColor: currentIndex === index || i.valid ? WHITE : LIGHT_GRAY_1,
 										},
 									]}
 								>
@@ -100,19 +126,14 @@ export const SignUpScreen: React.FC<LocalProps> = ({ navigation }): JSX.Element 
 					))}
 				</View>
 
-				<View style={{ minHeight: 300 }}>{currentStep?.component}</View>
+				<View>{currentStep?.component}</View>
 
-				<View style={[styles.container, { marginTop: 40, alignItems: "center" }]}>
-					<AppButton
-						title='NEXT'
-						onPress={handleNext}
-					/>
-					<Spacer />
+				<View style={[{ alignItems: "center", marginTop: 20 }]}>
 					<Pressable
 						onPress={handlePrev}
 						style={{ padding: 10 }}
 					>
-						<AppText style={{ fontWeight: "600", color: "#7A7A7A" }}>Back</AppText>
+						<AppText style={{ fontWeight: "600", color: LIGHT_GRAY_2 }}>Back</AppText>
 					</Pressable>
 				</View>
 			</View>

@@ -3,17 +3,18 @@
 [*] EquipmentsScreen
 [*] AboutScreen
 [*] HowItWorksScreen
-[ ] FaqsScreen
+[*] FaqsScreen
+[*] SignUpScreen
+[*] SignInScreen
+[*] Header and menu drawer
 [ ] ContactScreen
 [ ] PrivacyPolicyScreen
-TermsOfServiceScreen
-SignUpScreen
-SignInScreen
-SingleEquipmentScreen
-EquipmentBookingScreen
+[ ] TermsOfServiceScreen
+[ ] SingleEquipmentScreen
+[ ] EquipmentBookingScreen
 [ ] Icons
-
-[ ] Header and menu drawer
+[ ] Fonts
+[ ] Forgot Password
 
 
 // https://www.youtube.com/watch?v=P2hFcomkqXY&t=33s

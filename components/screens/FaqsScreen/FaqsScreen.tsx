@@ -62,56 +62,6 @@ const AnimatedItem: React.FC<{ item: { title: string; description: React.ReactEl
 
 interface LocalProps extends ScreenProps {}
 
-interface MenuOption {
-	title: string;
-	routes: {
-		title: string;
-		onPress: () => void;
-	}[];
-}
-
-// const menuOptions: MenuOption[] = [
-// 	{
-// 		title: "About us",
-// 		routes: [
-// 			{
-// 				title: "How it works",
-// 				onPress: () => handleOnPress(HOW_IT_WORKS),
-// 			},
-// 			{
-// 				title: "About Us",
-// 				onPress: () => handleOnPress(ABOUT_US),
-// 			},
-// 			{
-// 				title: "FAQs",
-// 				onPress: () => handleOnPress(FAQ),
-// 			},
-// 			{
-// 				title: "Contact",
-// 				onPress: () => handleOnPress(CONTACT),
-// 			},
-// 		],
-// 	},
-
-// 	{
-// 		title: "Terms",
-// 		routes: [
-// 			{
-// 				title: "Privacy Policy",
-// 				onPress: () => handleOnPress(PRIVACY_POLICY),
-// 			},
-// 			{
-// 				title: "Terms of Service",
-// 				onPress: () => handleOnPress(TERMS_OF_SERVICE),
-// 			},
-// 			{
-// 				title: "CSR",
-// 				onPress: () => handleOnPress(CSR),
-// 			},
-// 		],
-// 	},
-// ];
-
 const items: { title: string; faqs: { title: string; description: React.ReactElement | string }[] }[] = [
 	{
 		title: "Lenders",
