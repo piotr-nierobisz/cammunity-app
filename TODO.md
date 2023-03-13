@@ -12,9 +12,11 @@
 [ ] TermsOfServiceScreen
 [ ] SingleEquipmentScreen
 [ ] EquipmentBookingScreen
+
 [ ] Icons
 [ ] Fonts
-[ ] Forgot Password
+[ ] Forgot  & Reset Password
+[ ] Single blog page
 
 
 // https://www.youtube.com/watch?v=P2hFcomkqXY&t=33s
