@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList, Dimensions, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, Pressable } from "react-native";
 import React, { FC } from "react";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";

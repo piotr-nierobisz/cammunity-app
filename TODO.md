@@ -1,8 +1,8 @@
 ## Todo
-[ ] HomeScreen
-[ ] EquipmentsScreen
-[ ] AboutScreen
-[ ] HowItWorksScreen
+[*] HomeScreen
+[*] EquipmentsScreen
+[*] AboutScreen
+[*] HowItWorksScreen
 [ ] FaqsScreen
 [ ] ContactScreen
 [ ] PrivacyPolicyScreen

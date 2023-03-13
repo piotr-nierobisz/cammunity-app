@@ -3,6 +3,7 @@ import { Camera, ScreenProps } from "@app/constants";
 import { AppLayout } from "@app/components/layouts";
 import { Category, SearchSection, Showcase } from "./sub-components";
 import { Spacer } from "@app/components/shared";
+import useAuthControls from "@app/contexts/AuthContext";
 
 interface LocalProps extends ScreenProps {}
 
@@ -53,6 +54,11 @@ const cameraList2: Camera[] = [
 ];
 
 export const HomeScreen: React.FC<LocalProps> = (): JSX.Element => {
+	const theAuth = useAuthControls();
+	React.useEffect(() => {
+		console.log("Yoo", theAuth.hasVerified);
+	}, []);
+
 	return (
 		<AppLayout>
 			<Showcase />

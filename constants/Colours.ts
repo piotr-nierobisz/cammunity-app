@@ -1,6 +1,7 @@
 export const Colours = {
   APP: {
     PRIMARY: '#FF4F01',
+    PRIMARY_LIGHT: 'rgba(255,126,0,0.3)',
     TEXT_PRIMARY: '#FF7E00',
     SECONDARY: '#FDE047',
     BUTTON_BG: '#111111',

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { LinearGradient } from "expo-linear-gradient";
 import { FancyBorder } from "@app/components/shared";
 
 const img = require("@assets/girl-cam.jpeg");
@@ -44,7 +43,6 @@ const styles = StyleSheet.create({
 	con: {
 		height: 270,
 		width: "100%",
-		backgroundColor: "yellow",
 		overflow: "hidden",
 		position: "relative",
 	},
