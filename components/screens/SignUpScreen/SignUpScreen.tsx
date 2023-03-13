@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 
-	//indicatorBox
 	indicatorBox: {
 		justifyContent: "center",
 		alignItems: "center",

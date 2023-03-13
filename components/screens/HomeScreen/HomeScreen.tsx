@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Camera, ScreenProps } from "@app/constants";
 import { AppLayout } from "@app/components/layouts";
 import { Category, SearchSection, Showcase } from "./sub-components";
